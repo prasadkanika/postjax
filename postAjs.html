@@ -22,7 +22,7 @@ var k;
                 $scope.error = status;
             }
 
-            $http.post('sample.json',
+            $http.post('https://raw.githubusercontent.com/prasadkanika/postjax/main/sample.json',
             JSON.stringify({ myData: 'Hello World!' })).then(
                 function(response){
                     if(response.data){
