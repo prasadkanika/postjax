@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app='ajaxapp'>
+
+<head>
+    <title>AngularJs</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js'></script>
+</head>
+<body ng-controller='myctr'>
+    <button ng-click='data()'>Get Data</button>
+    <ol ng-repeat='a in arr'>
+        <li>{{a.name}}</li>
+    </ol>
+<script>
+var k;
+    angular.module("ajaxapp",[]).controller("myctr",function($scope,$http){
+
+        var onSuccess = function (data, status, headers, config) {
+                $scope.data = data;
+            };
+
+            var onError = function (data, status, headers, config) {
+                $scope.error = status;
+            }
+
+            $http.post('https://raw.githubusercontent.com/prasadkanika/json_files/main/sample.json',
+            JSON.stringify({ myData: 'Hello World!' })).then(
+                function(response){
+                    if(response.data){
+                        alert('sucess')
+                    }
+                },
+                function(response){
+                    alert(response.header)
+                }
+            )
+        });
+</script>
+</body>
+</html>
